@@ -4,7 +4,6 @@ import com.quiz.accessingdatasql.QuestionRepository;
 import com.quiz.domain.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 @Controller
-public class GreetingController {
+public class QuestionController {
 	@Autowired
 	private QuestionRepository questionRepository;
 
@@ -30,8 +29,8 @@ public class GreetingController {
 	}
 
 	@PostMapping
-	public String add(@RequestParam String name, Map<String, Object> model) {
-		Question question = new Question(name);
+	public String add(@RequestParam String name_question, Map<String, Object> model) {
+		Question question = new Question(name_question);
 		questionRepository.save(question);
 
 		Iterable<Question> questions = questionRepository.findAll();

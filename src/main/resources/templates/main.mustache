@@ -2,7 +2,7 @@
 <body>
     <div>
         <form method="post">
-            <input type="text" name="text" placeholder="Введите вопрос" />
+            <input type="text" name="name_question" placeholder="Введите вопрос" />
             <button type="submit">Добавить</button>
         </form>
     </div>
@@ -10,7 +10,7 @@
     {{#questions}}
     <div>
         <i>{{id}}</i>
-        <b>{{name}}</b>
+        <b>{{name_question}}</b>
     </div>
     {{/questions}}
 </body>

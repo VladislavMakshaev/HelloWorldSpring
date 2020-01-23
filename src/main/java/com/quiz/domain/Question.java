@@ -1,7 +1,5 @@
 package com.quiz.domain;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 
 @Entity
@@ -13,7 +11,7 @@ public class Question {
     private Integer id;
 
     @Column(name = "name_question")
-    private String name;
+    private String name_question;
 
     @Column(name = "id_theme")
     private Integer id_theme;
@@ -40,8 +38,8 @@ public class Question {
     public Question () {
     }
 
-    public Question(String name) {
-        this.name = name;
+    public Question(String name_question) {
+        this.name_question = name_question;
     }
 
     public Integer getId() {
@@ -53,10 +51,10 @@ public class Question {
     }
 
     public String getName() {
-        return name;
+        return name_question;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String name_question) {
+        this.name_question = name_question;
     }
 }

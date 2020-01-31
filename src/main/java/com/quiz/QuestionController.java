@@ -1,7 +1,7 @@
 package com.quiz;
 
-import com.quiz.accessingdatasql.QuestionRepository;
 import com.quiz.domain.Question;
+import com.quiz.domain.QuestionStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +13,7 @@ import java.util.Map;
 @Controller
 public class QuestionController {
 	@Autowired
-	private QuestionRepository questionRepository;
+	private QuestionStorage questionStorage;
 
 	@GetMapping("/greeting")
 	public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Map<String, Object> model) {
@@ -23,7 +23,7 @@ public class QuestionController {
 
 	@GetMapping
 	public String main(Map<String, Object> model) {
-		Iterable<Question> questions = questionRepository.findAll();
+		Iterable<Question> questions = questionStorage.getAllQuestions();
 		model.put("questions", questions);
 		return "main";
 	}
@@ -31,10 +31,9 @@ public class QuestionController {
 	@PostMapping
 	public String add(@RequestParam String name_question, Map<String, Object> model) {
 		Question question = new Question(name_question);
-		questionRepository.save(question);
-
-		Iterable<Question> questions = questionRepository.findAll();
+		Iterable<Question> questions = questionStorage.addQuestion(question);
 		model.put("questions", questions);
 		return "main";
 	}
+
 }

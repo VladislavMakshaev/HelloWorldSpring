@@ -1,15 +1,15 @@
 package com.quiz.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "question")
-public class Question {
+public class Question implements Serializable {
     @Id
     @Column(name = "id_question")
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
-
     @Column(name = "name_question")
     private String name_question;
 
@@ -18,6 +18,13 @@ public class Question {
 
     @Column(name = "id_difficult")
     private Integer id_difficult;
+
+    public Question() {
+    }
+
+    public Question(String name_question) {
+        this.name_question = name_question;
+    }
 
     public Integer getId_theme() {
         return id_theme;
@@ -33,13 +40,6 @@ public class Question {
 
     public void setId_difficult(Integer id_difficult) {
         this.id_difficult = id_difficult;
-    }
-
-    public Question () {
-    }
-
-    public Question(String name_question) {
-        this.name_question = name_question;
     }
 
     public Integer getId() {

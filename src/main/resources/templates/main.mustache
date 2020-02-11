@@ -6,6 +6,24 @@
             <button type="submit">Добавить</button>
         </form>
     </div>
+    <div>Список вопросов:</div>
+    <div>
+        <select name="questions" id="questions">
+            {{#questions}}
+            <option name="{{name_question}}" >{{name_question}}</option>
+            {{/questions}}
+        </select>
+    </div>
+
+    <div>Список тем:</div>
+    <div>
+        <select name="themes" id="themes">
+            {{#themes}}
+            <option name="{{name_theme}}" >{{name_theme}}</option>
+            {{/themes}}
+        </select>
+    </div>
+
     <div>Список вопросов</div>
     {{#questions}}
     <div>

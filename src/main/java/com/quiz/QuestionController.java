@@ -2,6 +2,8 @@ package com.quiz;
 
 import com.quiz.domain.Question;
 import com.quiz.domain.QuestionStorage;
+import com.quiz.domain.Theme;
+import com.quiz.domain.ThemeStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,8 @@ import java.util.Map;
 public class QuestionController {
 	@Autowired
 	private QuestionStorage questionStorage;
+    @Autowired
+    private ThemeStorage themeStorage;
 
 	@GetMapping("/greeting")
 	public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Map<String, Object> model) {
@@ -24,9 +28,12 @@ public class QuestionController {
 	@GetMapping
 	public String main(Map<String, Object> model) {
 		Iterable<Question> questions = questionStorage.getAllQuestions();
-		model.put("questions", questions);
+        model.put("questions", questions);
+        Iterable<Theme> themes = themeStorage.getAllThemes();
+        model.put("themes", themes);
 		return "main";
 	}
+
 
 	@PostMapping
 	public String add(@RequestParam String name_question, Map<String, Object> model) {
